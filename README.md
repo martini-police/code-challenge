@@ -17,25 +17,29 @@ For links, I have hardcoded the domain name to be "https://www.google.com" to ma
 ## Thought Process
 
 I initially tried targeting the structure of an Artwork carousel item (e.g. a link tag with an image and a div) because I thought it would make the code more resilient to changes from Google. I didn't want to use class names as they weren't human readable / meaningful, and so there is a risk they could change and break the code.
+
+
 However, after realising that the structure is different between Van Gogh and Picasso, but the div classes are the same, I decided to revert to using the div class names.
+
+
 After testing against a Books carousel, I realised that the structure was very similar (apart from some flexboxes and other non-important elements), so we could just look up a different div class to find the items. 
 Songs is an interesting case, as there can be 2 extensions (instead of the single date from Artwork).
 
 ## Further Improvements
 
-When looking for image data in the scripts, there are a few options to make the search process more efficient
+- When looking for image data in the scripts, there are a few options to make the search process more efficient
   1. Cache the images by their id, so that if an ID is found when searching for another ID, we can quickly find it later
     - This didn't result in any hits as the scripts seem to be in the same order as the images
   2. Cache when scripts are not containing images. Some scripts are for other things, so instead of always running regex on these scripts, we can instead remember that they don't store an image
   3. Start searching for the nth ID from the nth image - the scripts appear to be in the same order as the images that they reference, so we can start looking from the image's index, and then wrap around if needed.
 
-I tested these optimisations, but their impact was minimal. I decided that the relatively low number of scripts means that the complexity added to the code and the overhead of checking the cache etc probably wasn't worth it. For a bigger dataset, it may be worth it.
+> I tested these optimisations, but their impact was minimal. I decided that the relatively low number of scripts means that the complexity added to the code and the overhead of checking the cache etc probably wasn't worth it. For a bigger dataset, it may be worth it.
 
-The code could be made more elegant - I think a general from_div may work better than my current solution. However, as a proof of concept I believe this is sufficient. I would like to find the img, link and title in a more general way rather than relying on each type-specific div class. 
+- The code could be made more elegant - I think a general from_div may work better than my current solution. However, as a proof of concept I believe this is sufficient. I would like to find the img, link and title in a more general way rather than relying on each type-specific div class. 
 
-I would also like to write a proper JSON parser to convert the output to JSON, instead of the current messy way of doing it.
+- I would like to write a proper JSON parser to convert the output to JSON, instead of the current messy way of doing it.
 
-
+- There was some weirdness when handling escaped `=` characters. I've use a workaround, but would like to fix the root of problem.
 
 ## DRYness
 

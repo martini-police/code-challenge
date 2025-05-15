@@ -1,4 +1,8 @@
 # My Contribution
+
+- Handles Artwork, Songs, and Books
+- Unit tests and output freeze test
+ 
 ## How it works
 
 I have written CarouselHandler and CarouselItem classes. 

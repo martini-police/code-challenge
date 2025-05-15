@@ -8,7 +8,16 @@
 I have written CarouselHandler and CarouselItem classes. 
 
 CarouselHandler is responsible for taking a Google SERP, and finding the items within it.
-CarouselItem is a parent class of Artwork, Book, and Song. It is responsible for extracting information from valid divs. It has been written in such a way that other CarouselTypes (like Movies) can be easily implemented.
+CarouselItem is a parent class of Artwork, Book, and Song. It is responsible for extracting information from valid divs. It has been written in such a way that other CarouselTypes (like Movies) can be easily implemented:
+
+```py
+default_supported_types = [
+    SuppportedType("artworks", Artwork, "Cz5hV", "iELo6"),
+    SuppportedType("books", Book, "JCZQSb", "Z8r5Gb X8kvh PZPZlf", skip_image_lookup=True),
+    SuppportedType("songs", Song, "uciohe", "kIXOkb cULTof", skip_image_lookup=True),
+    # SuppportedType("movies", ... ) # Add Div classes here
+]
+```
 
 CarouselHandler is responsible for parsing the HTML, and then finding each item type in the HTML. It is rare, but it is possible for a SERP to contain multiple CarouselTypes [(things to do in london has "experiences" and "top sights")](https://www.google.com/search?q=Things+to+do+in+London&oq=Thin&gs_lcrp=EgZjaHJvbWUqDggAEEUYJxg7GIAEGIoFMg4IABBFGCcYOxiABBiKBTIGCAEQRRg5Mg0IAhAAGJIDGIAEGIoFMgoIAxAAGLEDGIAEMg0IBBAAGLEDGIAEGIoFMgYIBRBFGD0yBggGEEUYPTIGCAcQRRg90gEHOTM2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8). This is supported but not fully tested. This class is also responsible for finding higher definition images from the script tags in the HTML.
 

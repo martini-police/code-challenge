@@ -29,7 +29,8 @@ class SuppportedType:
 default_supported_types = [
     SuppportedType("artworks", Artwork, "Cz5hV", "iELo6"),
     SuppportedType("books", Book, "JCZQSb", "Z8r5Gb X8kvh PZPZlf", skip_image_lookup=True),
-    SuppportedType("songs", Song, "uciohe", "kIXOkb cULTof", skip_image_lookup=True)
+    SuppportedType("songs", Song, "uciohe", "kIXOkb cULTof", skip_image_lookup=True),
+    # SuppportedType("movies", ... ) # Add Div classes here
 ]
 
 class CarouselHandler:
